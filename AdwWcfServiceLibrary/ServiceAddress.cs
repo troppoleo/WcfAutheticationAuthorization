@@ -74,6 +74,7 @@ namespace AdwWcfServiceLibrary
         }
 
 
+
         public string GetMsgSwitchBetweenGroup()
         {
             WindowsPrincipal wp = new WindowsPrincipal((WindowsIdentity)Thread.CurrentPrincipal.Identity);
