@@ -12,6 +12,15 @@ namespace AdwWcfServiceLibrary
     [ServiceContract]
     public interface IServiceAddress
     {
+        [OperationContract]
+        string GetForStaff();
+
+        [OperationContract]
+        string GetForController();
+
+        [OperationContract]
+        string GetMsgSwitchBetweenGroup();
+        
         [Description("questo non funziona con BasicHttpBinding")]
         [OperationContract]
         string GetInfoAutentication();

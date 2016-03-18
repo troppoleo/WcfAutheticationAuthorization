@@ -78,6 +78,24 @@ namespace Client.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IServiceAddress")]
     public interface IServiceAddress {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetForStaff", ReplyAction="http://tempuri.org/IServiceAddress/GetForStaffResponse")]
+        string GetForStaff();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetForStaff", ReplyAction="http://tempuri.org/IServiceAddress/GetForStaffResponse")]
+        System.Threading.Tasks.Task<string> GetForStaffAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetForController", ReplyAction="http://tempuri.org/IServiceAddress/GetForControllerResponse")]
+        string GetForController();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetForController", ReplyAction="http://tempuri.org/IServiceAddress/GetForControllerResponse")]
+        System.Threading.Tasks.Task<string> GetForControllerAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetMsgSwitchBetweenGroup", ReplyAction="http://tempuri.org/IServiceAddress/GetMsgSwitchBetweenGroupResponse")]
+        string GetMsgSwitchBetweenGroup();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetMsgSwitchBetweenGroup", ReplyAction="http://tempuri.org/IServiceAddress/GetMsgSwitchBetweenGroupResponse")]
+        System.Threading.Tasks.Task<string> GetMsgSwitchBetweenGroupAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetInfoAutentication", ReplyAction="http://tempuri.org/IServiceAddress/GetInfoAutenticationResponse")]
         string GetInfoAutentication();
         
@@ -128,6 +146,30 @@ namespace Client.ServiceReference1 {
         
         public ServiceAddressClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string GetForStaff() {
+            return base.Channel.GetForStaff();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetForStaffAsync() {
+            return base.Channel.GetForStaffAsync();
+        }
+        
+        public string GetForController() {
+            return base.Channel.GetForController();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetForControllerAsync() {
+            return base.Channel.GetForControllerAsync();
+        }
+        
+        public string GetMsgSwitchBetweenGroup() {
+            return base.Channel.GetMsgSwitchBetweenGroup();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetMsgSwitchBetweenGroupAsync() {
+            return base.Channel.GetMsgSwitchBetweenGroupAsync();
         }
         
         public string GetInfoAutentication() {

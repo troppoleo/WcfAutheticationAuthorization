@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -56,6 +59,38 @@ namespace AdwWcfServiceLibrary
             string myName = ServiceSecurityContext.Current.PrimaryIdentity.Name;
 
             return string.Format("Is Authenticated: {0}, authentication type {1}, name {2}", isAuth, myAuthType, myName);
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "GR_TEST_WCF_STAFF")]
+        public string GetForStaff()
+        {
+            return "you staff member, are authorized";
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "GR_TEST_WCF_CONTROLLERS")]
+        public string GetForController()
+        {
+            return "you Controller member, are authorized!!";
+        }
+
+
+        public string GetMsgSwitchBetweenGroup()
+        {
+            WindowsPrincipal wp = new WindowsPrincipal((WindowsIdentity)Thread.CurrentPrincipal.Identity);
+
+            if (wp.IsInRole("GR_TEST_WCF_CONTROLLERS"))
+            {
+                return "Sei un controller";
+            }
+
+            if (wp.IsInRole("GR_TEST_WCF_STAFF"))
+            {
+                return "You're of the staff";
+            }
+
+            throw new SecurityException("non sei autorizzato");
+            
+            return "gruppo non identificato";
         }
     }
 }
