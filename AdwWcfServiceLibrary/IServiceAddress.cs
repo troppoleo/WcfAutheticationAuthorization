@@ -13,6 +13,19 @@ namespace AdwWcfServiceLibrary
     public interface IServiceAddress
     {
         [OperationContract]
+        string CkSenzaImpersonation();
+
+        [OperationContract]
+        string CkImpersonationOptionRequired();
+
+        [OperationContract]
+        string CkImpersonationOptionAllowed();
+        
+        [OperationContract]
+        string CkImpersonationOptionNotAllowed();
+
+
+        [OperationContract]
         string GetForStaff();
 
         [OperationContract]

@@ -13,17 +13,22 @@ namespace AdwHost
 
         static void Main(string[] args)
         {
-            try
+            while (true)
             {
-                ServiceHost srvHost = new ServiceHost(typeof(ServiceAddress));
-                srvHost.Open();
-                Console.WriteLine("Press any key to stop the service.");
-                Console.ReadLine();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Servizio interrotto: " + ex.Message);
-                Console.ReadLine();
+                try
+                {
+                    using (ServiceHost srvHost = new ServiceHost(typeof(ServiceAddress)))
+                    {
+                        srvHost.Open();
+                        Console.WriteLine("Press any key to stop the service.");
+                        Console.ReadLine();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Servizio interrotto: " + ex.Message);
+                    Console.ReadLine();
+                }
             }
             // start the service:
 

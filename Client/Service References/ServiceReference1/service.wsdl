@@ -7,6 +7,30 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/AdwWcfServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IServiceAddress_CkSenzaImpersonation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CkSenzaImpersonation" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkSenzaImpersonation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CkSenzaImpersonationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionRequired_InputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionRequired" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionRequired_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionRequiredResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionAllowed_InputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionAllowed" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionAllowed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionAllowedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionNotAllowed_InputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionNotAllowed" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAddress_CkImpersonationOptionNotAllowed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CkImpersonationOptionNotAllowedResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceAddress_GetForStaff_InputMessage">
     <wsdl:part name="parameters" element="tns:GetForStaff" />
   </wsdl:message>
@@ -50,6 +74,22 @@
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceAddress">
+    <wsdl:operation name="CkSenzaImpersonation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAddress/CkSenzaImpersonation" message="tns:IServiceAddress_CkSenzaImpersonation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAddress/CkSenzaImpersonationResponse" message="tns:IServiceAddress_CkSenzaImpersonation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionRequired">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequired" message="tns:IServiceAddress_CkImpersonationOptionRequired_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequiredResponse" message="tns:IServiceAddress_CkImpersonationOptionRequired_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionAllowed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowed" message="tns:IServiceAddress_CkImpersonationOptionAllowed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowedResponse" message="tns:IServiceAddress_CkImpersonationOptionAllowed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionNotAllowed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowed" message="tns:IServiceAddress_CkImpersonationOptionNotAllowed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowedResponse" message="tns:IServiceAddress_CkImpersonationOptionNotAllowed_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetForStaff">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceAddress/GetForStaff" message="tns:IServiceAddress_GetForStaff_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceAddress/GetForStaffResponse" message="tns:IServiceAddress_GetForStaff_OutputMessage" />
@@ -81,6 +121,42 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceAddress" type="tns:IServiceAddress">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CkSenzaImpersonation">
+      <soap:operation soapAction="http://tempuri.org/IServiceAddress/CkSenzaImpersonation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionRequired">
+      <soap:operation soapAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequired" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionAllowed">
+      <soap:operation soapAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CkImpersonationOptionNotAllowed">
+      <soap:operation soapAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetForStaff">
       <soap:operation soapAction="http://tempuri.org/IServiceAddress/GetForStaff" style="document" />
       <wsdl:input>

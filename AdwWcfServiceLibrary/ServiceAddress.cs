@@ -14,7 +14,21 @@ namespace AdwWcfServiceLibrary
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class ServiceAddress : IServiceAddress
     {
+        [OperationBehavior(Impersonation = ImpersonationOption.NotAllowed)]
         public string GetData(int value)
+
+
+
+
+
+
+
+
+
+
+
+
+
         {
             return string.Format("You entered: {0}", value);
         }
@@ -45,20 +59,28 @@ namespace AdwWcfServiceLibrary
 
         public string GetInfoAutentication()
         {
-            string userName = Thread.CurrentPrincipal.Identity.Name;
-            if (string.IsNullOrWhiteSpace(userName))
+            try
             {
-                Console.WriteLine("UserName is Empty");
-                return "UserName is Empty";
+                string userName = Thread.CurrentPrincipal.Identity.Name;
+                if (string.IsNullOrWhiteSpace(userName))
+                {
+                    Console.WriteLine("UserName is Empty");
+                    return "UserName is Empty";
+                }
+
+                Console.WriteLine(userName);
+
+                bool isAuth = ServiceSecurityContext.Current.PrimaryIdentity.IsAuthenticated;
+                string myAuthType = ServiceSecurityContext.Current.PrimaryIdentity.AuthenticationType;
+                string myName = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+
+                return string.Format("Is Authenticated: {0}, authentication type {1}, name {2}", isAuth, myAuthType, myName);
             }
-
-            Console.WriteLine(userName);
-
-            bool isAuth = ServiceSecurityContext.Current.PrimaryIdentity.IsAuthenticated;
-            string myAuthType = ServiceSecurityContext.Current.PrimaryIdentity.AuthenticationType;
-            string myName = ServiceSecurityContext.Current.PrimaryIdentity.Name;
-
-            return string.Format("Is Authenticated: {0}, authentication type {1}, name {2}", isAuth, myAuthType, myName);
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return "Errore";
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "GR_TEST_WCF_STAFF")]
@@ -89,9 +111,74 @@ namespace AdwWcfServiceLibrary
                 return "You're of the staff";
             }
 
-            throw new SecurityException("non sei autorizzato");
+            //throw new SecurityException("non sei autorizzato");
             
             return "gruppo non identificato";
+        }
+
+
+
+        public string CkSenzaImpersonation()
+        {
+            Console.WriteLine("\t\tThread Identity            :{0}",
+                 WindowsIdentity.GetCurrent().Name);
+            Console.WriteLine("\t\tThread Identity level  :{0}",
+                 WindowsIdentity.GetCurrent().ImpersonationLevel);
+            Console.WriteLine("\t\thToken                     :{0}",
+                 WindowsIdentity.GetCurrent().Token.ToString());
+
+            return WindowsIdentity.GetCurrent().Name;
+        }
+
+        /// <summary>
+        /// Impone l'impersonation
+        /// </summary>
+        /// <returns></returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.Required)]
+        public string CkImpersonationOptionRequired()
+        {
+            Console.WriteLine("\t\tThread Identity            :{0}",
+                 WindowsIdentity.GetCurrent().Name);
+            Console.WriteLine("\t\tThread Identity level  :{0}",
+                 WindowsIdentity.GetCurrent().ImpersonationLevel);
+            Console.WriteLine("\t\thToken                     :{0}",
+                 WindowsIdentity.GetCurrent().Token.ToString());
+
+            return WindowsIdentity.GetCurrent().Name;
+        }
+
+        /// <summary>
+        /// è il valore di default, fa l'impersonation se il client lo permette (da provare con binding diversi)
+        /// </summary>
+        /// <returns></returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
+        public string CkImpersonationOptionAllowed()
+        {
+            Console.WriteLine("\t\tThread Identity            :{0}",
+                 WindowsIdentity.GetCurrent().Name);
+            Console.WriteLine("\t\tThread Identity level  :{0}",
+                 WindowsIdentity.GetCurrent().ImpersonationLevel);
+            Console.WriteLine("\t\thToken                     :{0}",
+                 WindowsIdentity.GetCurrent().Token.ToString());
+
+            return WindowsIdentity.GetCurrent().Name;
+        }
+
+        /// <summary>
+        /// questo disabilita l'impersonation
+        /// </summary>
+        /// <returns></returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.NotAllowed)]
+        public string CkImpersonationOptionNotAllowed()
+        {
+            Console.WriteLine("\t\tThread Identity            :{0}",
+                 WindowsIdentity.GetCurrent().Name);
+            Console.WriteLine("\t\tThread Identity level  :{0}",
+                 WindowsIdentity.GetCurrent().ImpersonationLevel);
+            Console.WriteLine("\t\thToken                     :{0}",
+                 WindowsIdentity.GetCurrent().Token.ToString());
+
+            return WindowsIdentity.GetCurrent().Name;
         }
     }
 }

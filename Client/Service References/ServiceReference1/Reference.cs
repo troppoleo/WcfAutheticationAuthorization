@@ -78,6 +78,30 @@ namespace Client.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IServiceAddress")]
     public interface IServiceAddress {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkSenzaImpersonation", ReplyAction="http://tempuri.org/IServiceAddress/CkSenzaImpersonationResponse")]
+        string CkSenzaImpersonation();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkSenzaImpersonation", ReplyAction="http://tempuri.org/IServiceAddress/CkSenzaImpersonationResponse")]
+        System.Threading.Tasks.Task<string> CkSenzaImpersonationAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequired", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequiredResponse")]
+        string CkImpersonationOptionRequired();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequired", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionRequiredResponse")]
+        System.Threading.Tasks.Task<string> CkImpersonationOptionRequiredAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowed", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowedResponse")]
+        string CkImpersonationOptionAllowed();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowed", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionAllowedResponse")]
+        System.Threading.Tasks.Task<string> CkImpersonationOptionAllowedAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowed", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowedResponse")]
+        string CkImpersonationOptionNotAllowed();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowed", ReplyAction="http://tempuri.org/IServiceAddress/CkImpersonationOptionNotAllowedResponse")]
+        System.Threading.Tasks.Task<string> CkImpersonationOptionNotAllowedAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAddress/GetForStaff", ReplyAction="http://tempuri.org/IServiceAddress/GetForStaffResponse")]
         string GetForStaff();
         
@@ -146,6 +170,38 @@ namespace Client.ServiceReference1 {
         
         public ServiceAddressClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string CkSenzaImpersonation() {
+            return base.Channel.CkSenzaImpersonation();
+        }
+        
+        public System.Threading.Tasks.Task<string> CkSenzaImpersonationAsync() {
+            return base.Channel.CkSenzaImpersonationAsync();
+        }
+        
+        public string CkImpersonationOptionRequired() {
+            return base.Channel.CkImpersonationOptionRequired();
+        }
+        
+        public System.Threading.Tasks.Task<string> CkImpersonationOptionRequiredAsync() {
+            return base.Channel.CkImpersonationOptionRequiredAsync();
+        }
+        
+        public string CkImpersonationOptionAllowed() {
+            return base.Channel.CkImpersonationOptionAllowed();
+        }
+        
+        public System.Threading.Tasks.Task<string> CkImpersonationOptionAllowedAsync() {
+            return base.Channel.CkImpersonationOptionAllowedAsync();
+        }
+        
+        public string CkImpersonationOptionNotAllowed() {
+            return base.Channel.CkImpersonationOptionNotAllowed();
+        }
+        
+        public System.Threading.Tasks.Task<string> CkImpersonationOptionNotAllowedAsync() {
+            return base.Channel.CkImpersonationOptionNotAllowedAsync();
         }
         
         public string GetForStaff() {
